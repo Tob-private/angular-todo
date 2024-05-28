@@ -43,16 +43,21 @@ export class TodosComponent {
   })
 
   updateTodoStatus(todo: Todo) {
-    this.todoService.updateTodo({
+    const updatedTodo = {
       ...todo,
       isChecked: todo.isChecked ? false : true
-    });
+    }
+    this.todoService.updateTodo(updatedTodo);
+
+    // Update todos list
     this.todos = this.todoService.getTodos();
   }
   
   onTodoSubmit() {
     if (this.todoForm.value.newTodo) {
       this.todoService.addTodo(this.todoForm.value.newTodo)
+    } else {
+      alert("You need to enter a value to create a new todo")
     }
   }
 }
