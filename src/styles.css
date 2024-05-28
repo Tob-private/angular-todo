@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+app-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+ol>li {
+    margin-top: 10px;
+}
+app-root>form {
+    position: absolute;
+    top: 100px;
+    right: 300px;
+}
