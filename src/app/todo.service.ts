@@ -10,7 +10,6 @@ type Todo = {
   providedIn: 'root'
 })
 
-
 export class TodoService {
   todos = [
     {

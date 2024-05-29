@@ -1,29 +1,16 @@
 import {Component, inject} from '@angular/core';
 import {TodoService} from './todo.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
-type Todo = {
-  value: string
-  id: number
-  isChecked: boolean
-};
+import { type Todo } from "./todo.types";
+import { TodoComponent } from "./todo.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ReactiveFormsModule],
-  styles: `
-  .strikethrough {
-    text-decoration: line-through;
-  }
-
-  .removeTodoText {
-      color: red;
-  }
-`,
+  imports: [ReactiveFormsModule, TodoComponent],
   template: `
     <ol>
       @for(todo of todos; track todo.id) {
-        <li (click)="updateTodoStatus(todo)" [class.strikethrough]="todo.isChecked">{{ todo.value }}</li><span class="removeTodoText" (click)="todoService.deleteTodo(todo.id)">Remove todo</span>
+        <app-todo [todo]=todo (updateTodoListEvent)="this.todoService.getTodos()"/>
       }
     </ol>
     <form [formGroup]="todoForm" (ngSubmit)="onTodoSubmit()">
@@ -41,17 +28,6 @@ export class TodosComponent {
   todoForm = new FormGroup( {
     newTodo: new FormControl('', [Validators.required, Validators.minLength(1)])
   })
-
-  updateTodoStatus(todo: Todo) {
-    const updatedTodo = {
-      ...todo,
-      isChecked: todo.isChecked ? false : true
-    }
-    this.todoService.updateTodo(updatedTodo);
-
-    // Update todos list
-    this.todos = this.todoService.getTodos();
-  }
   
   onTodoSubmit() {
     if (this.todoForm.value.newTodo) {
