@@ -6,16 +6,26 @@ import { TodoService } from './todo.service';
     standalone: true,
     selector: 'app-todo',
     styles: `
-  .strikethrough {
-    text-decoration: line-through;
-  }
+        .strikethrough {
+            text-decoration: line-through;
+        }
 
-  .removeTodoText {
-      color: red;
-  }
+        .removeTodoText {
+            color: red;
+        }
 `,
     template: `
-        <li (click)="updateTodoStatus(todo)" [class.strikethrough]="todo.isChecked">{{ todo.value }}</li><span class="removeTodoText" (click)="todoService.deleteTodo(todo.id)">Remove todo</span>
+        <li 
+        (click)="updateTodoStatus(todo)" 
+        [class.strikethrough]="todo.isChecked">
+            {{ todo.value }}
+        </li>
+    
+        <span 
+        class="removeTodoText" 
+        (click)="todoService.deleteTodo(todo.id)">
+            Remove todo
+        </span>
     `,
 })
 export class TodoComponent {
