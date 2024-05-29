@@ -26,8 +26,6 @@ export class TodoService {
   ];
 
   getTodos(): Array<Todo> {
-    console.log(this.todos);
-    
     return this.todos;
   }
 
