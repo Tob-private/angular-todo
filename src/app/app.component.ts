@@ -1,7 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {TodoService} from './todo.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { type Todo } from "./todo.types";
 import { TodoComponent } from "./todo.component";
 @Component({
   selector: 'app-root',
