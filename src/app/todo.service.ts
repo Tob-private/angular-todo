@@ -42,6 +42,7 @@ export class TodoService {
 
   updateTodo(todo: Todo) {
     let oldTodo = this.todos.findIndex((findableTodo) => findableTodo.id === todo.id);
+    console.log("todo updated);
     this.todos[oldTodo] = todo;
   }
 
