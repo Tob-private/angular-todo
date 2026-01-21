@@ -47,6 +47,7 @@ export class TodoService {
   }
 
   deleteTodo(todoId: number) {
+    console.log("deleting todo);
     let todoIndex = this.todos.findIndex((findableTodo) => findableTodo.id === todoId)
     this.todos.splice(todoIndex, 1)
   }
